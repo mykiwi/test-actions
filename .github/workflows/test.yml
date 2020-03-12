@@ -1,4 +1,4 @@
-name: 'Ready for reviews'
+name: Ready for reviews
 
 on:
   pull_request:
