@@ -2,7 +2,7 @@ name: 'Ready for reviews'
 
 on:
   pull_request:
-    branches: [master]
+    branches: [dev]
     types: [ready_for_review]
 
 jobs:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Prepare the Slack message
-      run: echo "Please review ${GITHUB_ACTOR}'s PR <https://github.com/GensDeConfiance/GensDeConfiance.fr/pull/8265|GensDeConfiance/GensDeConfiance.fr#8265>"
+      run: echo "Please review ${GITHUB_ACTOR}'s PR <https://github.com/X/Y/pull/1|X/Y#1>"
       id: slack-message
 
     - name: Send the Slack message
