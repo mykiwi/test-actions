@@ -1,0 +1,22 @@
+name: 'Ready for reviews'
+
+on:
+  pull_request:
+    branches: [dev]
+    types: [ready_for_review]
+
+jobs:
+  Send Slack message to ask reviews:
+    runs-on: ubuntu-latest
+      steps:
+      - name: Prepare the Slack message
+        run: echo "Please review ${GITHUB_ACTOR}'s PR <https://github.com/GensDeConfiance/GensDeConfiance.fr/pull/8265|GensDeConfiance/GensDeConfiance.fr#8265>"
+        id: slack-message
+
+      - name: Send the Slack message
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        # https://github.com/pullreminders/slack-action
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"code-reviews\",\"text\":\"${{ steps.slack-message.outputs.branch }}\"}'
